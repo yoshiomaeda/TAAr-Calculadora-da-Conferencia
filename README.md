@@ -24,9 +24,10 @@ Se a composição e o saldo total divergirem aparecerá uma mensagem corresponde
 
 
 Figura 2. Primeira tabela preenchida. Composição e saldo total conferem:
-
+![Figura 2](/imagens/figura2.png)
 
 Figura 3. Primeira tabela preenchida. Composição e saldo total diferem:
+![Figura 3](/imagens/figura3.png)
 
 
 A TABELA DE BAIXO
@@ -35,12 +36,14 @@ A TABELA DE BAIXO
 Os cassetes A, B, C e D, sem detalhes, é só contar e registrar.
 
 Figura 4. As duas tabelas. Cassetes conferidos sem diferença:
+![Figura 4](/imagens/figura4.png)
 
 Os totais apurados de cada tipo de cédula são mostrados depois da última coluna da tabela e as eventuais diferenças entre as quantidades físicas e lógicas serão mostradas na sequência entre parênteses, se tiver sinal negativo quer dizer falta, senão é sobra. Veja exemplo a seguir.
 
 
 
 Figura 5. A segunda tabela com diferenças. Pelas quantidades registradas sobrou uma cédula [notação (1) ❌️] de R$10 mas faltou uma cédula [notação (-1) ❌️] de R$20, resultando numa diferença total de R$10 a menor:
+![Figura 5](/imagens/figura5.png)
 
 
 Já  escrevi demais...
