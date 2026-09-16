@@ -13,7 +13,7 @@ A TABELA DE CIMA E O SALDO TOTAL
 
 É na primeira tabela (de cima) que informamos as quantidades lógicas (do sistema) para isso é  necessário preenche-la com a composição que consta no totalizador do TAAr, inclusive o saldo total do terminal.
 
-!Visão Geral[/imagens/figura1.png]
+![Visão Geral](/imagens/figura1.png)
 
 Essa tabela tem 3 colunas:
 GDisp - é onde são informados os saldos lógicos das gavetas A, B, C e D.
