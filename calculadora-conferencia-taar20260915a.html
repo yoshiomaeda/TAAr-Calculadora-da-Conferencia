@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+<title id="TituloDocumento">TAAr-Calc</title>
+<meta name="author" content="Ricardo Maeda">
+<style>
+@media print {
+  input {
+    border: none !important;
+    background: transparent !important;
+    color: #000 !important;
+    -webkit-appearance: none;
+  }
+}
+</style>
+
+</head>
+<body>
+<font size="3">
+<h4>Calculadora para conferência de TAAR</h4>
+
+<!-- Campo de texto com autocompletar desativado para liberar a lista -->
+n° SOL: 
+<input type="text" list="codigosSOL" id="nrSOL" size="10" oninput="AtualizaTituloDocumento()" placeholder="Selecione ou digite..." autocomplete="off">
+<datalist id="codigosSOL">
+  <option value="70794">
+  <option value="71403">
+  <option value="71779">
+  <option value="71875">
+  <option value="71876">
+  <option value="71877">
+</datalist>
+
+<br>
+<H3>Composição numerário SOL</H3>
+*Transcrever da fita detalhe.
+	<table>
+		<tr>
+			<th align="center">Cédula</th>
+			<th align="center">GDisp</th>
+			<th align="center">GavE</th>
+			<th align="center">Rejeit</th>
+			<th align="center">Total</th>
+		</tr>
+		<tr>
+			<td align="center" size="4">2</td>
+			<td align="center"><input type="tel" tabindex="1" id="gd002" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="8" id="ge002" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="15" id="rj002" size="6" oninput="totalizaSOL()"></td>
+			<td align="center" id="tot002">♤</td>
+
+		</tr>
+		<tr>
+			<td align="center" size="4">5</td>
+			<td align="center"><input type="tel" tabindex="2" id="gd005" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="9" id="ge005" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="16" id="rj005" size="6" oninput="totalizaSOL()"></td>
+			<td align="center" id="tot005">♡</td>
+
+		</tr>
+		<tr>
+			<td align="center" size="4">10</td>
+			<td align="center"><input type="tel" tabindex="3" id="gd010" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="10" id="ge010" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="17" id="rj010" size="6" oninput="totalizaSOL()"></td>
+			<td align="center" id="tot010">◇</td>
+		</tr>
+		<tr>
+			<td align="center" size="4">20</td>
+			<td align="center"><input type="tel" tabindex="4" id="gd020" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="11" id="ge020" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="18" id="rj020" size="6" oninput="totalizaSOL()"></td>
+			<td align="center" id="tot020">♧</td>
+		</tr>
+		<tr>
+			<td align="center" size="4">50</td>
+			<td align="center"><input type="tel" tabindex="5" id="gd050" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="12" id="ge050" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="19" id="rj050" size="6" oninput="totalizaSOL()"></td>
+			<td align="center" id="tot050">☆</td>
+		</tr>
+		<tr>
+			<td align="center" size="4">100</td>
+			<td align="center"><input type="tel" tabindex="6" id="gd100" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="13" id="ge100" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="20" id="rj100" size="6" oninput="totalizaSOL()"></td>
+			<td align="center" id="tot100">■</td>
+		</tr>
+		<tr>
+			<td align="center" size="4">200</td>
+			<td align="center"><input type="tel" tabindex="7" id="gd200" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="14" id="ge200" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="21" id="rj200" size="6" oninput="totalizaSOL()"></td>
+			<td align="center" id="tot200">○</td>
+		</tr>
+	</table>
+<p id="saldoTotalCalculado"></p>
+
+<table>
+	<tr>
+		<th align="center">Saldo Total (SOL): <input type="tel" tabindex="22" id="saldoSOLDigitado" size="6" oninput="totalizaSOL()"></th>
+		<th align="center" id="saldoConfere"></th>
+	</tr>
+</table>
+
+<h4 id="saidaComparacao"></h4>
+
+<h3>Composição numerário físico (apurado)</h3>
+
+	<table>
+		<tr>
+			<th align="center">Cédula</th>
+			<th align="center">GDisp</th>
+			<th align="center">GavE</th>
+			<th align="center">Rejeit</th>
+			<th align="center">Total (&diferenças)</th>
+		</tr>
+		<tr>
+			<td align="center" size="4">2</td>
+			<td align="center"><input type="tel" tabindex="23" id="gdA002" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="30" id="geA002" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="37" id="rjA002" size="6" oninput="totalizaSOL()"></td>
+			<td align="left" id="totA002">♤</td>
+		</tr>
+		<tr>
+			<td align="center" size="4">5</td>
+			<td align="center"><input type="tel" tabindex="24" id="gdA005" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="31" id="geA005" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="38" id="rjA005" size="6" oninput="totalizaSOL()"></td>
+			<td align="left" id="totA005">♡</td>
+
+		</tr>
+		<tr>
+			<td align="center" size="4">10</td>
+			<td align="center"><input type="tel" tabindex="25" id="gdA010" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="32" id="geA010" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="39" id="rjA010" size="6" oninput="totalizaSOL()"></td>
+			<td align="left" id="totA010">◇</td>
+		</tr>
+		<tr>
+			<td align="center" size="4">20</td>
+			<td align="center"><input type="tel" tabindex="26" id="gdA020" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="33" id="geA020" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="40" id="rjA020" size="6" oninput="totalizaSOL()"></td>
+			<td align="left" id="totA020">♧</td>
+		</tr>
+		<tr>
+			<td align="center" size="4">50</td>
+			<td align="center"><input type="tel" tabindex="27" id="gdA050" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="34" id="geA050" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="41" id="rjA050" size="6" oninput="totalizaSOL()"></td>
+			<td align="left" id="totA050">☆</td>
+		</tr>
+		<tr>
+			<td align="center" size="4">100</td>
+			<td align="center"><input type="tel" tabindex="28" id="gdA100" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="35" id="geA100" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="42" id="rjA100" size="6" oninput="totalizaSOL()"></td>
+			<td align="left" id="totA100">■</td>
+		</tr>
+		<tr>
+			<td align="center" size="4">200</td>
+			<td align="center"><input type="tel" tabindex="29" id="gdA200" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="36" id="geA200" size="6" oninput="totalizaSOL()"></td>
+			<td align="center"><input type="tel" tabindex="43" id="rjA200" size="6" oninput="totalizaSOL()"></td>
+			<td align="left" id="totA200">○</td>
+		</tr>
+		<tr>
+			<td align="center" size="4">Tot</td>
+			<td align="center"></td>
+			<td align="center" id="geATotal" size="6">🎮️</td>
+			<td align="center" id="rjATotal" size="6">🎲️</td>
+			<td align="left" id="totATotal"></td>
+		</tr>
+		
+		<tr>
+			<td align="center" size="4"></td>
+			<td align="center"></td>
+			<td align="center" id="geANTotal" size="6">🕹</td>
+			<td align="center" id="rjANTotal" size="6">🧩</td>
+			<td align="left" id="totANTotal"></td>
+		</tr>
+	</table>
+
+<p id="saldoTotalApurado"></p>
+<p id="saidaComparacaoA"></p>
+<hr>
+
+<p id="cronometroInicial"></p>
+<p id="cronometroTempoDecorrido"></p>
+
+<script>
+const local= ["gd", "ge", "rj"];
+const localA= ["gdA", "geA", "rjA"];
+const valor= ["002", "005", "010", "020", "050", "100", "200"];
+var totaisPorValorDeFaceSOL=[valor.length];
+var totaisPorValorDeFaceApurado=[valor.length];
+var saldoSOL;
+var cronometroInicio= NaN;
+
+//divisao inteira
+function div(n, d){
+  return (n - n % d) / d;
+}
+
+function atualizaTempoDecorrido(){
+	if (isNaN(cronometroInicio)){
+		cronometroInicio = new Date();
+		document.getElementById("cronometroInicial").innerHTML= "Início da conferência:\n" +
+						cronometroInicio.getHours() + "h " + cronometroInicio.getMinutes() + "min " +
+						cronometroInicio.getSeconds() + "s  de   " + cronometroInicio.getDate() + "/" +
+						(cronometroInicio.getMonth() + 1) + "/" + (cronometroInicio.getFullYear());
+		return 0;
+	}
+	else{
+		document.getElementById("cronometroTempoDecorrido").innerHTML= "⏳️Tempo decorrido: " + div((Date.now()-cronometroInicio),60000) + "m " + div(Date.now()-cronometroInicio, 1000) % 60 + "s";
+	}
+}
+
+function AtualizaTituloDocumento(){
+  var agora = new Date();
+  var solValor = document.getElementById("nrSOL").value;
+  
+  // Formatação do ano, mês e dia com 2 dígitos
+  var ano = agora.getFullYear();
+  var mes = String(agora.getMonth() + 1).padStart(2, '0');
+  var dia = String(agora.getDate()).padStart(2, '0');
+  var dataFormatada = ano + mes + dia;
+
+  var novoTitulo = "TC";
+  if (solValor) {
+      novoTitulo += solValor + "_" + dataFormatada;
+  }
+  
+  document.title = novoTitulo;
+  document.getElementById("TituloDocumento").textContent = novoTitulo;
+}
+
+function totalizaSOL() {
+  var saldoTotal= 0;
+  var numeroLido;
+	
+	atualizaTempoDecorrido();
+  //Processando a primeira tabela, informacoes do SOL
+  for (var i = 0; i < valor.length; i++) {
+    var totalValor=0;
+    for (var j = 0; j < local.length; j++) {
+      numeroLido= parseInt(parseInt(document.getElementById(local[j] + valor[i]).value));
+      if (!isNaN(numeroLido))
+        totalValor+= numeroLido;
+    }
+    totaisPorValorDeFaceSOL[i]= totalValor;
+    document.getElementById("tot" + valor[i]).innerHTML = totalValor;
+    saldoTotal+= totalValor * valor[i];
+  }
+  document.getElementById("saldoTotalCalculado").innerHTML = "Saldo SOL total das gavetas: R$ " + saldoTotal +",00";
+  saldoSOL = parseInt(document.getElementById("saldoSOLDigitado").value);
+  if (isNaN(saldoSOL))
+    return;
+  if (saldoTotal == saldoSOL){
+    document.getElementById("saidaComparacao").innerHTML= "Composição e saldo SOL conferem.";
+    document.getElementById("saldoConfere").innerHTML= "✅️";
+	}
+  else{
+		if (saldoTotal > saldoSOL){
+    	document.getElementById("saidaComparacao").innerHTML= "Inconsistência: saldo das gavetas maior que o saldo SOL informado. Corrija dados informados antes de prosseguir. Diferença: R$"+ (saldoTotal - saldoSOL)+",00";
+		}
+		else if (saldoTotal < saldoSOL){
+			document.getElementById("saidaComparacao").innerHTML= "Inconsistência: saldo das gavetas menor que o saldo SOL informado. Corrija dados informados antes de prosseguir. Diferença: R$"+ (saldoSOL - saldoTotal)+",00";
+		}
+    document.getElementById("saldoConfere").innerHTML= "❌️";
+	}
+	//Processando a segunda tabela, quantidades apuradas
+	saldoTotal= 0;
+  for (var i = 0; i < valor.length; i++) {
+    var totalValor=0;
+    for (var j = 0; j < local.length; j++) {
+      numeroLido= parseInt(parseInt(document.getElementById(localA[j] + valor[i]).value));
+      if (!isNaN(numeroLido))
+        totalValor+= numeroLido;
+    }
+    totaisPorValorDeFaceApurado[i]= totalValor;
+    if (isNaN(totaisPorValorDeFaceSOL[i]))
+        document.getElementById("totA" + valor[i]).innerHTML = " " + totalValor;
+    else
+        document.getElementById("totA" + valor[i]).innerHTML = " " + totalValor + ((totalValor-totaisPorValorDeFaceSOL[i])==0?" ✅️":" (" + (totalValor-totaisPorValorDeFaceSOL[i]) + ")" + " ❌️");
+    saldoTotal+= totalValor * valor[i];
+  }
+  document.getElementById("saldoTotalApurado").innerHTML = "Saldo total apurado: R$ " + saldoTotal +",00";
+  saldoSOL = parseInt(document.getElementById("saldoSOLDigitado").value);
+  if (isNaN(saldoSOL))
+    return;
+  if (saldoTotal == saldoSOL)
+    document.getElementById("saidaComparacaoA").innerHTML= "Composição e saldo SOL conferem.";
+  else{
+		if (saldoTotal > saldoSOL){
+    	document.getElementById("saidaComparacaoA").innerHTML= "Inconsistência: saldo das gavetas maior que o saldo SOL informado. Diferença: R$"+ (saldoTotal - saldoSOL)+",00 (a maior)";
+		}
+		else if (saldoTotal < saldoSOL){
+			document.getElementById("saidaComparacaoA").innerHTML= "Inconsistência: saldo das gavetas menor que o saldo SOL informado. Diferença: R$"+ (saldoSOL - saldoTotal)+",00 (a menor).";
+		}
+	}
+
+	//Totaliza a coluna da Gaveta 'E'
+  var totalValor=0;
+  var totalQuant=0;
+  for (var i = 0; i < valor.length; i++) {
+    numeroLido= parseInt(parseInt(document.getElementById("geA" + valor[i]).value));
+    if (!isNaN(numeroLido)){
+      totalValor+= numeroLido * valor[i];
+      totalQuant+= numeroLido;
+    }
+    
+  }
+  if (!isNaN(totalValor)){
+      document.getElementById("geATotal").innerHTML = "R$"+totalValor;
+      document.getElementById("geANTotal").innerHTML = "Q" + totalQuant;
+  }
+
+	//Totaliza a coluna de Rejeitos
+  totalValor=0;
+  totalQuant=0;
+  for (var i = 0; i < valor.length; i++) {
+    numeroLido= parseInt(parseInt(document.getElementById("rjA" + valor[i]).value));
+    if (!isNaN(numeroLido)){
+      totalValor+= numeroLido * valor[i];
+      totalQuant+= numeroLido;
+    }
+  }
+  if (!isNaN(totalValor)){
+      document.getElementById("rjATotal").innerHTML = "R$"+totalValor;
+      document.getElementById("rjANTotal").innerHTML = "Q" + totalQuant;
+  }
+
+}
+
+// Atualiza o atributo value do HTML para preservar os dados na impressão
+window.onbeforeprint = function() {
+  const inputs = document.querySelectorAll('input');
+  inputs.forEach(input => {
+    // Sincroniza o atributo HTML com o valor atual digitado
+    input.setAttribute('value', input.value);
+    // Garante que o valor da propriedade interna seja mantido
+    input.defaultValue = input.value;
+  });
+};
+
+</script>
+</font>
+</body>
+</html>
